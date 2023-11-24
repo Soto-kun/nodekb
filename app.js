@@ -28,23 +28,16 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 // Body Parser Middleware
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({extended: false}));
 
 //parse application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+
+//Set public Folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Home Route
-app.get('/', async(req, res)=>{
-    /*Article.find({}, function(err, articles){
-        if(err){
-            console.log(err);
-        }else{
-            res.render('index', {
-                title: 'Articles',
-                articles: articles
-            });
-        }
-    });*/
+app.get('/', async(req, res)=>{ //MongoDB Doesn't accept call back function anymore
     let articles = {};
     try{
         articles = await Article.find();
@@ -71,15 +64,6 @@ app.post('/articles/add', function(req, res){
         article.title = req.body.title;
         article.author = req.body.author;
         article.body = req.body.body;
-        
-       /*const saved = await article.save(function(err){
-            if(err){
-                console.log(err);
-            }else{
-                res.redirect('/');
-            }
-        });*/
-        //console.log(saved);
         article.save().then(()=>{
             res.redirect('/');
         }).catch((err)=>{
