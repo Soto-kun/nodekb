@@ -2,7 +2,22 @@ doctype html
 html 
     head 
         title Knowledgebase 
-    body   
+        link(rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.css')
+    body 
+      nav.navbar.navbar-expand-md.navbar-dark.bg-dark.mb-4
+        .container
+            a.navbar-brand(href='#') KnowledgeBAse
+            button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarCollapse' aria-controls='navbarCollapse' aria-expanded='false' aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+            #navbarCollapse.collapse.navbar-collapse
+            ul.navbar-nav.me-auto.mb-2.mb-md-0
+                li.nav-item
+                a.nav-link(aria-current='page' href='/') Home
+                li.nav-item
+                a.nav-link(href='/articles/add') Add Article
+                li.nav-item
+                       
+      .container
         block content 
         br
         hr
@@ -12,3 +27,5 @@ html
                 | &copy; 2023 |
                 i.fa.fa-value(aria-hidden='true') &nbsp;
                 a(href='#') View Source
+      script(src='/bower_components/jquery/dist/bootstrap.js') //For toggler action
+      script(src='/bower_components/bootstrap/dist/js/bootstrap.js') 
